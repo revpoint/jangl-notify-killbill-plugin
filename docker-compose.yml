@@ -1,0 +1,6 @@
+---
+services:
+  plugin:
+    build: .
+    volumes:
+      - ./:/plugin/

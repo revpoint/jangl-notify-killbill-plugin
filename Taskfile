@@ -1,0 +1,38 @@
+#!/bin/bash -l
+
+function install-ruby {
+    set -ex
+    rvm install jruby-9.2.19.0
+    rvm use jruby-9.2.19.0 --default
+}
+
+function install-deps {
+    set -ex
+    gem install bundler:1.17.3
+    bundle
+    jbundle
+}
+
+function build {
+    set -ex
+    rake killbill:clean
+    rake build
+    rake killbill:package
+}
+
+function test {
+    set -ex
+    rake
+}
+
+function help {
+    echo "$0 <task> <args>"
+    echo "Tasks:"
+    compgen -A function | cat -n
+}
+
+if [ $# -eq 0 ]; then
+    help
+else
+    "$@"
+fi
