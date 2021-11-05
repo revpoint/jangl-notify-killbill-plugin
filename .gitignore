@@ -23,6 +23,9 @@ doc/
 target
 pom.xml.asc
 
+.gradle/
+vendor/
+
 .idea/
 
 Gemfile.head.lock

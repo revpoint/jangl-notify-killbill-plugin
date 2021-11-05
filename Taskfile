@@ -17,6 +17,7 @@ function build {
     set -ex
     rake killbill:clean
     rake build
+    rake vendor
     rake killbill:package
 }
 

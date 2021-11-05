@@ -1,9 +1,7 @@
 require 'jangl_notify/schema'
 require 'jangl_notify/utils'
 
-require 'jbundler'
 java_import 'org.apache.kafka.clients.producer.ProducerRecord'
-
 
 module JanglNotify
   class KafkaProducer

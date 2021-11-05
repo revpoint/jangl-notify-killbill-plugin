@@ -33,8 +33,8 @@ module JanglNotify
 
     def get_schema_id(schema_json)
       endpoint = @config.fetch :schema_registry_endpoint, 'http://schema-registry.localhost:8081'
-      username = @config.fetch :schema_registry_username
-      password = @config.fetch :schema_registry_password
+      username = @config.fetch :schema_registry_username, nil
+      password = @config.fetch :schema_registry_password, nil
       client = SchemaRegistry::Client.new(endpoint, username, password)
 
       subject_name = @config.fetch :schema_registry_subject_name, 'killbill-notify-value'

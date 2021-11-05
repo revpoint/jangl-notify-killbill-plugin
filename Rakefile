@@ -13,5 +13,10 @@ RSpec::Core::RakeTask.new
 require 'killbill/rake_task'
 Killbill::PluginHelper.install_tasks
 
+task :vendor do
+  FileUtils.rm_rf('vendor/jar-dependencies')
+  exit(1) unless system './gradlew --no-daemon vendor'
+end
+
 # Run tests by default
 task :default => :spec
