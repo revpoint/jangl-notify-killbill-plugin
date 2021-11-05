@@ -1,0 +1,15 @@
+{
+  "name": "KillbillEvent",
+  "type": "record",
+  "namespace": "killbill.notify",
+  "fields": [
+    {"name": "timestamp", "type": "long", "logicalType": "timestamp-millis"},
+    {"name": "event_type", "type": "string"},
+    {"name": "object_type", "type": "string"},
+    {"name": "object_id", "type": "string"},
+    {"name": "meta_data", "type": "string"},
+    {"name": "account_id", "type": "string"},
+    {"name": "tenant_id", "type": "string"},
+    {"name": "user_token", "type": "string"}
+  ]
+}

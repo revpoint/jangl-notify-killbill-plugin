@@ -22,6 +22,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'killbill', '~> 9.0'
 
+  s.add_dependency "avro"  #(Apache 2.0 license)
+  s.add_dependency "schema_registry", ">= 0.1.0" #(MIT license)
+
   s.add_development_dependency 'jbundler', '~> 0.9.2'
   s.add_development_dependency 'rake', '>= 10.0.0', '< 11.0.0'
   s.add_development_dependency 'rspec', '~> 2.12.0'

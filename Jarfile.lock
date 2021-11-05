@@ -13,8 +13,11 @@
 - org.kill-bill.billing:killbill-platform-osgi:jar:0.37.19
 - jline:jline:jar:2.14.6
 - org.kill-bill.billing:killbill-internal-api:jar:0.19.18
+- org.xerial.snappy:snappy-java:jar:1.1.7.3
+- org.apache.kafka:kafka-clients:jar:2.3.0
 - org.joda:joda-money:jar:0.9
 - org.ehcache.integrations.shiro:shiro-ehcache3:jar:1.0.0
+- org.slf4j:slf4j-api:jar:1.7.26
 - org.kill-bill.commons:killbill-concurrent:jar:0.21.15
 - org.kill-bill.billing:killbill-util:jar:0.19.18
 - com.fasterxml.jackson.dataformat:jackson-dataformat-smile:jar:2.6.7
@@ -26,7 +29,6 @@
 - io.netty:netty:jar:3.10.6.Final
 - org.apache.felix:org.apache.felix.framework:jar:4.4.1
 - org.ehcache:ehcache-clustered:jar:3.3.1
-- org.bouncycastle:bcpkix-jdk15on:jar:1.56
 - org.kill-bill.billing:killbill-util:jar:tests:0.19.18
 - com.google.code.findbugs:jsr305:jar:3.0.1
 - com.google.guava:guava:jar:20.0
@@ -50,10 +52,10 @@
 - org.antlr:antlr-runtime:jar:3.5.2
 - org.kill-bill.commons:killbill-locker:jar:0.21.15
 - org.ehcache:ehcache:jar:3.3.1
+- org.lz4:lz4-java:jar:1.6.0
 - io.dropwizard.metrics:metrics-jcache:jar:3.2.2
 - com.fasterxml.jackson.datatype:jackson-datatype-joda:jar:2.6.7
 - com.google.inject.extensions:guice-multibindings:jar:3.0
-- org.bouncycastle:bcprov-jdk15on:jar:1.56
 - joda-time:joda-time:jar:2.9.9
 - javax.inject:javax.inject:jar:1
 - com.h2database:h2:jar:1.4.194
@@ -66,7 +68,7 @@
 - org.kill-bill.commons:killbill-embeddeddb-common:jar:0.21.15
 - org.kill-bill.billing:killbill-platform-base:jar:0.37.19
 - org.kill-bill.commons:killbill-queue:jar:0.21.15
-- org.slf4j:slf4j-api:jar:1.7.25
+- com.github.luben:zstd-jni:jar:1.4.2-1
 - org.kill-bill.billing:killbill-platform-osgi-api:jar:0.37.19
 - org.kill-bill.commons:killbill-xmlloader:jar:0.21.15
 - org.mockito:mockito-all:jar:1.10.19

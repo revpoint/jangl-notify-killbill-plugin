@@ -1,27 +1,40 @@
+require 'jangl_notify/kafka'
+require 'time'
+
+
 module JanglNotify
   class NotificationPlugin < Killbill::Plugin::Notification
 
+    def start_plugin
+      config = {}  # get config from tenant properties/global config
+      @producer = KafkaProducer.new(config, @logger)
+      super
+    end
+
+    def stop_plugin
+      super
+      @producer.close
+    end
+
     def on_event(event)
-      if event.event_type == :ACCOUNT_CREATION
-        write_event :TAG_CREATION, :ACCOUNT, event.object_id, event.account_id, event.tenant_id
-      elsif event.event_type == :ACCOUNT_CHANGE
-        write_event :TAG_DELETION, :ACCOUNT, event.object_id, event.account_id, event.tenant_id
-      else
-        @logger.warn "Unexpected event type #{event.event_type} for object #{event.object_type}"
-        # Error: unexpected event. Notify the test by sending a bogus event
-        write_event :SUBSCRIPTION_UNCANCEL, :SUBSCRIPTION, 'f2e50cd0-faec-11e3-a3ac-0800200c9a66', 'f2e50cd0-faec-11e3-a3ac-0800200c9a66', 'f2e50cd0-faec-11e3-a3ac-0800200c9a66'
-      end
+      write_event event
+      nil
     end
 
     private
 
-    def write_event(event_type, object_type, object_id, account_id, tenant_id)
-      file_name = "/var/tmp/killbill-notification-test.txt"
-      content   = "#{event_type}-#{object_type}-#{object_id}-#{account_id}-#{tenant_id}"
-
-      # Append the content to make sure we fail in case we receive multiple events
-      File.open(file_name, 'a') { |f| f.puts content }
-      print content
+    def write_event(event)
+      @producer.send({
+        :timestamp => (Time.now.to_f * 1000).to_i,
+        :event_type => event.event_type.to_s,
+        :object_type => event.object_type.to_s,
+        :object_id => event.object_id || '',
+        :meta_data => event.meta_data || '',
+        :account_id => event.account_id || '',
+        :tenant_id => event.tenant_id || '',
+        :user_token => event.user_token || '',
+      })
     end
+
   end
 end

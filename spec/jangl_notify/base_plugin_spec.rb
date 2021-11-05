@@ -18,20 +18,19 @@ describe JanglNotify::NotificationPlugin do
     @kb_event.object_id   = "9f73c8e9-188a-4603-a3ba-2ce684411fb9"
     @kb_event.account_id  = "a86ed6d4-c0bd-4a44-b49a-5ec29c3b314a"
     @kb_event.tenant_id   = "b86fd6d4-c0bd-4a44-b49a-5ec29c3b3765"
+
+    @plugin.start_plugin
   end
 
-  it "should start and stop correctly" do
-    @plugin.start_plugin
+  after(:each) do
     @plugin.stop_plugin
   end
 
-  it "should should test receiving an event" do
-    file_name = '/var/tmp/killbill-notification-test.txt'
+  it "should start and stop correctly" do
+  end
 
+  it "should should test receiving an event" do
     output = @plugin.on_event(@kb_event)
     output.should be_nil
-
-    File.file?(file_name).should be_true
-    File.delete file_name
   end
 end
